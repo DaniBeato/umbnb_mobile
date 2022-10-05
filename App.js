@@ -1,9 +1,10 @@
 import React from 'react'
-import Main from './src/components/Main.jsx'
+import Navegation from './src/navigation/Navigation'
 
 export default function App () {
-  return  <Main />
+  return (
+    <Navegation />
+  );
 }
 
 
- 
