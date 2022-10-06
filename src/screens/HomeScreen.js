@@ -1,16 +1,15 @@
 import React from 'react';
+import Constants from 'expo-constants';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import HousesList from '../components/HousesList';
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text
-        style={{
-          fontSize: 30,
-          textAlign: 'center',
-          marginTop: 50
-        }}
-      >Home Screen</Text>
+    <View
+      style={{
+        marginTop: Constants.statusBarHeight, flexGrow:1
+      }}>
+      <HousesList />
     </View>
   );
   }
