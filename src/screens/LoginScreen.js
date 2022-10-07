@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Input from '../components/TextInput';
-import CustomButton from '../components/CustomButton';
+import Button from '../components/Button';
 
 const LoginScreen = () => {
   return (
@@ -10,8 +10,23 @@ const LoginScreen = () => {
       <Text style={styles.title}>Hello</Text>
       <Text style={styles.subTitle}>Sing In to your account</Text>
       <Input placeholder="Juan@mail.com" />
-      <Input placeholder="********" />
-      <CustomButton title="Login" />
+      <Input placeholder="********" secureTextEntry={true}/>
+      <Text style={styles.forgotPassword}>Forgot your Password?</Text>
+      <Button
+        width='80%'
+        title="Login"
+      />
+      <View style={{flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', marginTop: 20}}>
+      <Text style={styles.forgotPassword}>Don´t have on account?</Text>
+      <Button
+        bg='white'
+        border='1px'
+        marginTop='10px'
+        width='30%'
+        color='#000'
+        title="Sing Up"
+      />
+      </View>
     </View>
   );
   }
@@ -31,6 +46,11 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 20,
     color: 'gray',
+  },
+  forgotPassword: {
+    marginTop: 20,
+    color: 'gray',
+    fontSize: 15,
   },
 });
 
