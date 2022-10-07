@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 //import screens
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +33,7 @@ function MyTabs() {
             />
             <Tab.Screen
                 name="Profile"
-                component={ProfileScreen}
+                component={LoginScreen}
                 options={{
                     tabBarLabel: 'Profile',
                     tabBarIcon: ({ color, size }) => (
