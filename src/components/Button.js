@@ -3,12 +3,12 @@ import styled from 'styled-components/native';
 
 
 const ButtonContainer = styled.TouchableOpacity`
-  background-color: ${props => props.bg || '#ff5c6c'};
+  background-color: ${props => props.bgColor || '#ff565b'};
 	border: ${props => props.border || 'none'};
   marginTop: ${props => props.marginTop || '60px'};
   padding: 10px;
   width: ${props => props.width};
-  border-radius: 10px;
+  border-radius: 5px;
 `
 
 const ButtonText = styled.Text`
@@ -18,10 +18,10 @@ const ButtonText = styled.Text`
   text-align: center;
 `
 
-const Button = ({bg, border, marginTop, width, title, color}) => (
+const Button = ({onPress, bgColor, border, marginTop, width, title, color}) => (
   <ButtonContainer
-    onPress={() => alert('Button Pressed')}
-		bg={bg}
+    onPress={onPress}
+		bgColor={bgColor}
 		border={border}
 		marginTop={marginTop}
     width={width}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 
+
 const styles = StyleSheet.create({
   center: {
     alignItems: "center"
@@ -17,11 +18,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const Input = ({ placeholder, secureTextEntry }) => {
+const Input = ({ placeholder, secureTextEntry, onPress }) => {
   return (
     <TextInput style={styles.textInput}
     placeholder={placeholder}
     secureTextEntry={secureTextEntry}
+    onPress={onPress}
     />
   );
 }
