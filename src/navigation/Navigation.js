@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -7,7 +8,34 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 //import screens
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
+const LoginStackNavigator = createNativeStackNavigator();
+
+function LoginNavigator() {
+	return (
+		<LoginStackNavigator.Navigator
+			initialRouteName="Login"
+		>
+			<LoginStackNavigator.Screen
+				name="Login"
+				component={LoginScreen}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<LoginStackNavigator.Screen
+				name="Register"
+				component={RegisterScreen}
+				options={{
+					headerTransparent: true,
+					headerTitle: '',
+				}}
+			/>
+		</LoginStackNavigator.Navigator>
+	);
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -32,12 +60,13 @@ function MyTabs() {
 			/>
 			<Tab.Screen
 				name="Profile"
-				component={ProfileScreen}
+				component={LoginNavigator}
 				options={{
 					tabBarLabel: 'Profile',
 					tabBarIcon: ({ color, size }) => (
 						<MaterialCommunityIcons name="account-circle-outline" size={size} color={color} />
 					),
+					headerShown: false,
 				}}
 			/>
 		</Tab.Navigator>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
@@ -8,12 +9,14 @@ import Button from '../components/Button';
 
 const LoginScreen = () => {
 
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       {/* <Text style={styles.title}>Hello</Text> */}
       <Logo />
       <Text
-        title = 'Log in to start planning your next'
+        title = 'Log in to start planning your next trip.'
         color = 'gray'
         fontSize = '18px'
         marginTop='0px'
@@ -41,7 +44,7 @@ const LoginScreen = () => {
           color='gray'
         />
         <Button
-          onPress={() => alert('Register')}
+          onPress={() => navigation.navigate('Register')}
           bgColor='white'
           border='1px'
           marginTop='10px'
