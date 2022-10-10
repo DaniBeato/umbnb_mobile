@@ -1,35 +1,58 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
+import Text from '../components/Text';
+import Logo from '../components/Logo';
 import Input from '../components/TextInput';
 import Button from '../components/Button';
 
+
 const LoginScreen = () => {
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello</Text>
-      <Text style={styles.subTitle}>Sing In to your account</Text>
+      {/* <Text style={styles.title}>Hello</Text> */}
+      <Logo />
+      <Text
+        title = 'Log in to start planning your next'
+        color = 'gray'
+        fontSize = '18px'
+        marginTop='0px'
+      />
       <Input placeholder="Juan@mail.com" />
       <Input placeholder="********" secureTextEntry={true}/>
-      <Text style={styles.forgotPassword}>Forgot your Password?</Text>
+      <Text
+        title='Forgot your Password?'
+        color='gray'
+      />
       <Button
+        onPress={() => alert('Login')}
         width='80%'
-        title="Login"
+        title="Log in"
       />
-      <View style={{flexDirection: 'row', justifyContent: 'space-evenly', width: '100%', marginTop: 20}}>
-      <Text style={styles.forgotPassword}>Don´t have on account?</Text>
-      <Button
-        bg='white'
-        border='1px'
-        marginTop='10px'
-        width='30%'
-        color='#000'
-        title="Sing Up"
-      />
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          width: '100%',
+          marginTop: 20
+        }}>
+        <Text
+          title='Don´t have an account?'
+          color='gray'
+        />
+        <Button
+          onPress={() => alert('Register')}
+          bgColor='white'
+          border='1px'
+          marginTop='10px'
+          width='30%'
+          color='#000'
+          title="Sign Up"
+        />
       </View>
     </View>
   );
-  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -38,22 +61,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {
-    fontSize: 80,
-    color: '#000',
-    fontWeight: 'bold',
-  },
-  subTitle: {
-    fontSize: 20,
-    color: 'gray',
-  },
-  forgotPassword: {
-    marginTop: 20,
-    color: 'gray',
-    fontSize: 15,
-  },
 });
-
-
 
 export default LoginScreen;
