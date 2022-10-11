@@ -9,7 +9,6 @@ const HousesList = () => {
         ItemSeparatorComponent={() => <Text> </Text>}
         renderItem={({item: house}) => (
             <HouseItem {...house}/>
-
         )}
         />
         )

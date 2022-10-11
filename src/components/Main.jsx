@@ -1,6 +1,6 @@
 import React from 'react';
 import Constants from 'expo-constants'
-import {Text, View} from 'react-native'
+import {View} from 'react-native'
 import HousesList from './HousesList.jsx'
 
 const Main = () => {
@@ -8,7 +8,6 @@ const Main = () => {
         <View style={{marginTop: Constants.statusBarHeight, flexGrow:1 }}>
             <HousesList />
         </View>
-
     )
 }
 export default Main
