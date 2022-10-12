@@ -4,11 +4,11 @@ import {
   ScrollView, Modal, TouchableOpacity
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import SelectList from 'react-native-dropdown-select-list';
 import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
 import Button from '../components/Button';
-import { ModalPicker } from '../components/ModalPicker';
 
 
 const RegisterScreen = () => {
@@ -18,15 +18,41 @@ const RegisterScreen = () => {
   //Switch
   const [isEnable, setIsEnable] = useState(false);
   const toggleSwitch = () => setIsEnable(previousState => !previousState);
-  //Modal Picker
-  const [chooseData, setchooseData] = useState('Gender');
-  const [isModalVisible, setisModalVisible] = useState(false);
-  const changeModalVisibility = (bool) => {
-    setisModalVisible(bool);
-  }
-  const setData = (option) => {
-    setchooseData(option);
-  }
+  //SelectList Gender
+  const [selected, setSelected] = useState("");
+  const data = [
+    {key: 1, value: 'Male'},
+    {key: 2, value: 'Female'},
+    {key: 3, value: 'Other'},
+    {key: 4, value: 'Prefer not to say'},
+  ];
+  //SelectList Province
+  const [selectedProvince, setSelectedProvince] = useState("");
+  const dataProvince = [
+    {key: 1, value: 'Buenos Aires'},
+    {key: 2, value: 'Catamarca'},
+    {key: 3, value: 'Chaco'},
+    {key: 4, value: 'Chubut'},
+    {key: 5, value: 'Córdoba'},
+    {key: 6, value: 'Corrientes'},
+    {key: 7, value: 'Entre Ríos'},
+    {key: 8, value: 'Formosa'},
+    {key: 9, value: 'Jujuy'},
+    {key: 10, value: 'La Pampa'},
+    {key: 11, value: 'La Rioja'},
+    {key: 12, value: 'Mendoza'},
+    {key: 13, value: 'Misiones'},
+    {key: 14, value: 'Neuquén'},
+    {key: 15, value: 'Río Negro'},
+    {key: 16, value: 'Salta'},
+    {key: 17, value: 'San Juan'},
+    {key: 18, value: 'San Luis'},
+    {key: 19, value: 'Santa Cruz'},
+    {key: 20, value: 'Santa Fe'},
+    {key: 21, value: 'Santiago del Estero'},
+    {key: 22, value: 'Tierra del Fuego'},
+    {key: 23, value: 'Tucumán'},
+  ];
 
   return (
     <ScrollView
@@ -45,35 +71,51 @@ const RegisterScreen = () => {
       <Input placeholder="Age" />
       <Input placeholder="Email" />
       <Input placeholder="Phone" />
-      <SafeAreaView>
-        <TouchableOpacity
-          onPress={() => changeModalVisibility(true)}
-          style={styles.touchableOpacity}
-        >
-          <Text color='black'>{chooseData}</Text>
-        </TouchableOpacity>
-        <Modal
-          transparent={true}
-          animationType='fade'
-          visible={isModalVisible}
-          nRequestClose={() => changeModalVisibility(false)}
-        >
-          <ModalPicker
-            changeModalVisibility={changeModalVisibility}
-            setData={setData}
-          />
-        </Modal>
-      </SafeAreaView>
-      <Input placeholder="Province" />
       <View
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          width: '100%',
-          marginTop: 20
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          width: '80%',
+          marginTop: 15,
+        }}
+      >
+        <Text title="Gender"/>
+        <SelectList
+          data={data}
+          setSelected={setSelected}
+          search={false}
+          inputStyles={{ width: '60%'}}
+        />
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          width: '80%',
+          marginTop: 15,
+        }}
+      >
+        <Text title="Province"/>
+        <SelectList
+          data={dataProvince}
+          setSelected={setSelectedProvince}
+          inputStyles={{ width: '60%'}}
+          search={false}
+        />
+      </View>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          alignItems: 'stretch',
+          justifyContent: 'space-between',
+          width: '80%',
+          marginTop: 15,
         }}>
-        <Text title="Host" textAlign="center" />
-        <Switch
+        <Text title="Host"/>
+        <Switch style={{ alignItems: 'flex-end'}}
           trackColor={{false: "#767577", true: "lightgreen"}}
           thumbColor={isEnable ? "#ff565b" : "#f4f3f4"}
           onValueChange={toggleSwitch}
@@ -82,7 +124,7 @@ const RegisterScreen = () => {
       </View>
       <Input placeholder="Password" secureTextEntry={true} />
       <Button
-        onPress={() => alert('Register')}
+        onPress={() => navigation.navigate('Home')}
         width='80%'
         title="Sign Up"
       />
