@@ -28,7 +28,7 @@ const LoginScreen = () => {
         color='gray'
       />
       <Button
-        onPress={() => alert('Login')}
+        onPress={() => navigation.navigate('Home')}
         width='80%'
         title="Log in"
       />

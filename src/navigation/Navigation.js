@@ -32,6 +32,13 @@ function LoginNavigator() {
 					headerShown: false,
 				}}
 			/>
+			<LoginStackNavigator.Screen
+				name="Home"
+				component={MyTabs}
+				options={{
+					headerShown: false,
+				}}
+			/>
 		</LoginStackNavigator.Navigator>
 	);
 }
@@ -41,13 +48,13 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
 	return (
 		<Tab.Navigator
-			initialRouteName="Home"
+			initialRouteName="HomeScreen"
 			screenOptions={{
 				tabBarActiveTintColor: '#ff565b',
 			}}
 		>
 			<Tab.Screen
-				name="Home"
+				name="HomeScreen"
 				component={HomeScreen}
 				options={{
 					tabBarLabel: 'Home',
@@ -59,7 +66,7 @@ function MyTabs() {
 			/>
 			<Tab.Screen
 				name="Profile"
-				component={LoginNavigator}
+				component={ProfileScreen}
 				options={{
 					tabBarLabel: 'Profile',
 					tabBarIcon: ({ color, size }) => (
@@ -75,7 +82,7 @@ function MyTabs() {
 export default function Navegation() {
 	return (
 		<NavigationContainer>
-			<MyTabs />
+			<LoginNavigator />
 		</NavigationContainer>
 	);
 }

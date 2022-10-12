@@ -17,7 +17,7 @@ const Text = ({color, fontSize, fontWeight, marginTop, textAlign, title}) => (
 		fontWeight={fontWeight}
 		marginTop={marginTop}
 		textAlign={textAlign}
-		>{title}</TextContainer>
+	>{title}</TextContainer>
 )
 
 export default Text;
