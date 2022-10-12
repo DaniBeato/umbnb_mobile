@@ -21,7 +21,7 @@ const LoginScreen = () => {
         fontSize = '18px'
         marginTop='0px'
       />
-      <Input placeholder="Juan@mail.com" />
+      <Input placeholder="Email" />
       <Input placeholder="********" secureTextEntry={true}/>
       <Text
         title='Forgot your Password?'

@@ -16,7 +16,7 @@ const LoginStackNavigator = createNativeStackNavigator();
 function LoginNavigator() {
 	return (
 		<LoginStackNavigator.Navigator
-			initialRouteName="Login"
+			initialRouteName="Register"
 		>
 			<LoginStackNavigator.Screen
 				name="Login"
@@ -29,8 +29,7 @@ function LoginNavigator() {
 				name="Register"
 				component={RegisterScreen}
 				options={{
-					headerTransparent: true,
-					headerTitle: '',
+					headerShown: false,
 				}}
 			/>
 		</LoginStackNavigator.Navigator>
