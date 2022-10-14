@@ -73,7 +73,6 @@ const RegisterScreen = () => {
       <Input placeholder="Last Name" />
       <Input placeholder="Age" />
       <Input placeholder="Email" />
-      <Input placeholder="Phone" />
       <PhoneInput
         defaultValue={phoneNumber}
         defaultCode='AR'
@@ -81,10 +80,9 @@ const RegisterScreen = () => {
         onChangeFormattedText={text => {
           setPhoneNumber(text);
         }}
+        containerStyle={styles.phoneInput}
+        textContainerStyle={styles.textContainer}
       />
-      <TouchableOpacity onPress={() => alert(phoneNumber)}>
-        <Text title='Get Phone Number' />
-      </TouchableOpacity>
       <View
         style={{
           flexDirection: 'row',
@@ -193,6 +191,15 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingStart: 30,
     marginTop: 20,
+    borderRadius: 10,
+  },
+  phoneInput: {
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginTop: 20,
+  },
+  textContainer: {
     borderRadius: 10,
   },
 });
