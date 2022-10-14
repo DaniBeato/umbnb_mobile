@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import SelectList from 'react-native-dropdown-select-list';
+import PhoneInput from 'react-native-phone-number-input';
 import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
@@ -15,6 +16,8 @@ const RegisterScreen = () => {
 
   const navigation = useNavigation();
 
+  //PhoneNumber
+  const [phoneNumber, setPhoneNumber] = useState('');
   //Switch
   const [isEnable, setIsEnable] = useState(false);
   const toggleSwitch = () => setIsEnable(previousState => !previousState);
@@ -71,6 +74,17 @@ const RegisterScreen = () => {
       <Input placeholder="Age" />
       <Input placeholder="Email" />
       <Input placeholder="Phone" />
+      <PhoneInput
+        defaultValue={phoneNumber}
+        defaultCode='AR'
+        withShadow
+        onChangeFormattedText={text => {
+          setPhoneNumber(text);
+        }}
+      />
+      <TouchableOpacity onPress={() => alert(phoneNumber)}>
+        <Text title='Get Phone Number' />
+      </TouchableOpacity>
       <View
         style={{
           flexDirection: 'row',
