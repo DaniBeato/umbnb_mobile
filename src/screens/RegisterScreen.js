@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet, View, SafeAreaView, Switch,
-  ScrollView, Modal, TouchableOpacity
-} from 'react-native';
+import { StyleSheet, Switch, ScrollView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import SelectList from 'react-native-dropdown-select-list';
 import PhoneInput from 'react-native-phone-number-input';
+import Columns from '../components/Columns';
 import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
@@ -60,6 +59,7 @@ const RegisterScreen = () => {
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
+      <StatusBar style="auto" backgroundColor='white' />
       <Logo
         marginTop='80px'
       />
@@ -71,7 +71,7 @@ const RegisterScreen = () => {
       />
       <Input placeholder="First Name" />
       <Input placeholder="Last Name" />
-      <Input placeholder="Age" />
+      <Input placeholder="Age" keyboardType='numeric' />
       <Input placeholder="Email" />
       <PhoneInput
         defaultValue={phoneNumber}
@@ -83,75 +83,73 @@ const RegisterScreen = () => {
         containerStyle={styles.phoneInput}
         textContainerStyle={styles.textContainer}
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'baseline',
-          justifyContent: 'space-between',
-          width: '80%',
-          marginTop: 15,
-        }}
-      >
-        <Text title="Gender"/>
-        <SelectList
-          data={data}
-          setSelected={setSelected}
-          search={false}
-          inputStyles={{ width: '60%'}}
-        />
-      </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'baseline',
-          justifyContent: 'space-between',
-          width: '80%',
-          marginTop: 15,
-        }}
-      >
-        <Text title="Province"/>
-        <SelectList
-          data={dataProvince}
-          setSelected={setSelectedProvince}
-          inputStyles={{ width: '60%'}}
-          search={false}
-        />
-      </View>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          alignItems: 'stretch',
-          justifyContent: 'space-between',
-          width: '80%',
-          marginTop: 15,
-        }}>
-        <Text title="Host"/>
-        <Switch style={{ alignItems: 'flex-end'}}
-          trackColor={{false: "#767577", true: "lightgreen"}}
-          thumbColor={isEnable ? "#ff565b" : "#f4f3f4"}
-          onValueChange={toggleSwitch}
-          value={isEnable}
-        />
-      </View>
+      <Columns
+        alignItems = 'baseline'
+        justifyContent = 'space-between'
+        marginTop = '15px'
+        marginBottom = '0px'
+        columnLeft = {
+          <Text title="Gender"/>
+        }
+        columnRight = {
+          <SelectList
+            data={data}
+            setSelected={setSelected}
+            search={false}
+            inputStyles={{ width: '60%'}}
+          />
+        }
+      />
+      <Columns
+        alignItems = 'baseline'
+        justifyContent = 'space-between'
+        marginTop = '15px'
+        columnLeft = {
+          <Text title="Province"/>
+        }
+        columnRight = {
+          <SelectList
+            data={dataProvince}
+            setSelected={setSelectedProvince}
+            inputStyles={{ width: '60%'}}
+            search={false}
+          />
+        }
+      />
+      <Columns
+          alignItems = 'flex-start'
+          justifyContent = 'space-between'
+          marginTop = '15px'
+          width='80%'
+          columnLeft = {
+            <Text title="Host" />
+          }
+          columnRight = {
+            <Switch style={{ padding: 6 }}
+              trackColor={{false: "#767577", true: "lightgreen"}}
+              thumbColor={isEnable ? "#ff565b" : "#f4f3f4"}
+              onValueChange={toggleSwitch}
+              value={isEnable}
+            />
+          }
+      />
       <Input placeholder="Password" secureTextEntry={true} />
+      <Input placeholder="Confirm Password" secureTextEntry={true} />
       <Button
         onPress={() => navigation.navigate('Home')}
         width='80%'
         title="Sign Up"
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          width: '100%',
-          marginTop: 20,
-          marginBottom: 20
-        }}>
+      <Columns
+        width='100%'
+        marginBottom='40px'
+        columnLeft = {
         <Text
           title='Already have an account?'
           color='gray'
         />
+        }
+        columnRight = {
         <Button
           onPress={() => navigation.navigate('Login')}
           bgColor='white'
@@ -161,7 +159,8 @@ const RegisterScreen = () => {
           color='#000'
           title="Log in"
         />
-      </View>
+        }
+      />
     </ScrollView>
   );
 }

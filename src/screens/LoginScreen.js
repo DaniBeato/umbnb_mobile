@@ -5,6 +5,7 @@ import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
 import Button from '../components/Button';
+import Columns from '../components/Columns';
 
 
 const LoginScreen = () => {
@@ -13,7 +14,6 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.title}>Hello</Text> */}
       <Logo />
       <Text
         title = 'Log in to start planning your next trip.'
@@ -32,27 +32,26 @@ const LoginScreen = () => {
         width='80%'
         title="Log in"
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          width: '100%',
-          marginTop: 20
-        }}>
-        <Text
+      <Columns
+        width = '100%'
+        columnLeft={
+          <Text
           title='Don´t have an account?'
           color='gray'
-        />
-        <Button
-          onPress={() => navigation.navigate('Register')}
-          bgColor='white'
-          border='1px'
-          marginTop='10px'
-          width='30%'
-          color='#000'
-          title="Sign Up"
-        />
-      </View>
+          />
+        }
+        columnRight={
+          <Button
+            onPress={() => navigation.navigate('Register')}
+            bgColor='white'
+            border='1px'
+            marginTop='10px'
+            width='30%'
+            color='#000'
+            title="Sign Up"
+          />
+        }
+      />
     </View>
   );
 }
