@@ -1,29 +1,20 @@
 import {View, Text, StyleSheet, Image} from 'react-native'
 import React from 'react'
 import StyledText from './StyledText.jsx'
-import HousesStats from './HousesStats.jsx'
 import theme from  '../theme.js'
+import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 
-const HouseItemHeader = ({image, id, owner, name, address}) => (
-    <View style={{ flexDirection: 'row', paddingBotton: 2 }}> 
-        <View style={{ paddingRight: 10}}>   
-            <Image style={styles.image} source={{ uri: image }} />
-        </View>
-        <View style={{ flex: 1}}>
-            <StyledText fontSize='subheading' fontWeight='bold' color='primary'>id: {id}</StyledText> 
-            <StyledText style={styles.name}>name: {name}</StyledText>
-            <StyledText>owner: {owner}</StyledText>
-            <StyledText>address: {address}</StyledText>
-            <Text> </Text>
-        </View>
-    </View>
-)
 
 const HouseItem = (props) => (
-    <View key={props.id} style={styles.container}>
-        <HouseItemHeader {...props} />
-        <HousesStats {...props} />
-    </View>
+    <Card>
+        <CardImage source={{uri: props.image}} title={props.name} />
+        <CardContent text="Province:  " text2={props.province} />
+        <CardContent text="City:  " text2={props.city} />
+        <CardContent text="Price:  " text2={props.price} />
+        <CardAction separator={true} inColumn={false}>
+            <CardButton onPress={() => {}} title="View"color="blue" />
+        </CardAction>
+    </Card> 
 )
 
 
