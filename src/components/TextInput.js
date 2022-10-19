@@ -18,13 +18,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const Input = ({ placeholder, secureTextEntry, onPress, keyboardType }) => {
+const Input = ({ placeholder, secureTextEntry, onPress, keyboardType, value, onChangeText }) => {
   return (
     <TextInput style={styles.textInput}
     placeholder={placeholder}
     secureTextEntry={secureTextEntry}
     onPress={onPress}
     keyboardType={keyboardType}
+    value={value}
+    onChangeText={onChangeText}
     />
   );
 }

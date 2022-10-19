@@ -16,7 +16,7 @@ const LoginStackNavigator = createNativeStackNavigator();
 function LoginNavigator() {
 	return (
 		<LoginStackNavigator.Navigator
-			initialRouteName="Register"
+			initialRouteName="Login"
 		>
 			<LoginStackNavigator.Screen
 				name="Login"
