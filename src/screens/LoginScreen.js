@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import user from '../api/user';
 import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
@@ -11,6 +12,8 @@ import Columns from '../components/Columns';
 const LoginScreen = () => {
 
   const navigation = useNavigation();
+  const [email, setEmail]  = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
@@ -21,16 +24,30 @@ const LoginScreen = () => {
         fontSize = '18px'
         marginTop='0px'
       />
-      <Input placeholder="Email" />
-      <Input placeholder="********" secureTextEntry={true}/>
+      <Input placeholder="Email"
+        value= {email}
+        onChangeText= {text => setEmail(text)}/>
+      <Input placeholder="********"
+        secureTextEntry={true}
+        value={password}
+        onChangeText={text => setPassword(text)}/>
       <Text
         title='Forgot your Password?'
         color='gray'
       />
       <Button
-        onPress={() => navigation.navigate('Home')}
         width='80%'
         title="Log in"
+        onPress={() => {
+          // navigation.navigate('Home');
+          const usr = {
+            email: email,
+            password: password,
+          };
+          user.post(usr)
+            .then((response) => console.log(response.data))
+            .catch((error) => console.log(error.response.data));
+        }}
       />
       <Columns
         width = '100%'
