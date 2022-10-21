@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import user from '../api/user';
+import App, {saveData} from '../helpers/aStorage';
+import user from '../api/login';
 import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
 import Button from '../components/Button';
 import Columns from '../components/Columns';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const LoginScreen = () => {
@@ -14,6 +16,32 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail]  = useState('');
   const [password, setPassword] = useState('');
+  const [res, setRes] = useState('');
+
+  async function handleLogin() {
+    try {
+      console.log('*****');
+      const usr = {
+        email: email,
+        password: password,
+      };
+      await user.post(usr)
+        .then((response) => {
+          console.log(response.data);
+          const setRes = response;
+        })
+        .catch((error) => {throw error});
+    } catch (error) {
+      console.log(error);
+    }
+    if (res.status === 200) {
+      await AsyncStorage.setItem('token', response.data.access_token);
+      navigation.replace('Home');
+    }
+    else {
+      throw new Error('Invalid email or password');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -38,16 +66,9 @@ const LoginScreen = () => {
       <Button
         width='80%'
         title="Log in"
-        onPress={() => {
-          // navigation.navigate('Home');
-          const usr = {
-            email: email,
-            password: password,
-          };
-          user.post(usr)
-            .then((response) => console.log(response.data))
-            .catch((error) => console.log(error.response.data));
-        }}
+        onPress={
+          handleLogin
+        }
       />
       <Columns
         width = '100%'
