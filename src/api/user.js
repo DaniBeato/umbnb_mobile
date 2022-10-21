@@ -1,3 +1,3 @@
 import Request from "./base";
 
-export default new Request("login");
+export default new Request("user");
