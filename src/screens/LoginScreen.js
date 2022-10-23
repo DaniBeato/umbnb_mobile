@@ -18,28 +18,26 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [res, setRes] = useState('');
 
-  async function handleLogin() {
+  const handleLogin = async() => {
     try {
-      console.log('*****');
       const usr = {
         email: email,
         password: password,
       };
       await user.post(usr)
         .then((response) => {
-          console.log(response.data);
-          const setRes = response;
+          setRes(response.data);
         })
         .catch((error) => {throw error});
+      if (res && res.data && res.data.access_token) {
+        await AsyncStorage.setItem('token', res.data.access_token);
+        navigation.replace('Home');
+      }
+      else {
+        throw new Error('Invalid email or password');
+      }
     } catch (error) {
       console.log(error);
-    }
-    if (res.status === 200) {
-      await AsyncStorage.setItem('token', response.data.access_token);
-      navigation.replace('Home');
-    }
-    else {
-      throw new Error('Invalid email or password');
     }
   };
 
