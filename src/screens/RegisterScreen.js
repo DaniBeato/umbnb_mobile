@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Switch, ScrollView } from 'react-native';
+import { Alert, StyleSheet, Switch, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import SelectList from 'react-native-dropdown-select-list';
@@ -82,6 +82,7 @@ const RegisterScreen = () => {
         if (response.status === 200) {
           console.log('Usuario creado');
           console.log(response.data);
+          Alert.alert('Register','User created');
           navigation.replace('Login');
         } else {
           throw new Error('Error');

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import App, {saveData} from '../helpers/aStorage';
+import saveData from '../helpers/saveData';
 import user from '../api/login';
 import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
 import Button from '../components/Button';
 import Columns from '../components/Columns';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const LoginScreen = () => {
@@ -18,22 +17,23 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [res, setRes] = useState('');
 
-  const handleLogin = async() => {
+  const handleLogin = () => {
     try {
       const usr = {
         email: email,
         password: password,
       };
-      await user.post(usr)
+      user.post(usr)
         .then((response) => {
           setRes(response.data);
         })
         .catch((error) => {throw error});
       if (res && res.data && res.data.access_token) {
-        await AsyncStorage.setItem('token', res.data.access_token);
+        saveData(res.data.access_token);
         navigation.replace('Home');
       }
       else {
+        Alert.alert('Login', 'Invalid email or password');
         throw new Error('Invalid email or password');
       }
     } catch (error) {

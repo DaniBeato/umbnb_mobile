@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const base = 'http://192.168.0.15:8080/Umbnb/';
+const base = 'http://192.168.0.158:8080/Umbnb/';
 const headers = {
   'Content-Type': 'application/json',
   'Authorization': ''
