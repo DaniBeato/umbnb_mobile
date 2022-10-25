@@ -1,6 +1,6 @@
 import React from 'react';
 import Constants from 'expo-constants';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import HouseList from '../components/HouseList';
 
 const HomeScreen = () => {

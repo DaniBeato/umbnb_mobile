@@ -12,6 +12,7 @@ import UserScreen from '../screens/UserScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import HouseScreen from '../screens/HouseScreen';
+import CreateHouseScreen from '../screens/CreateHouseScreen';
 
 const LoginStackNavigator = createNativeStackNavigator();
 
@@ -69,6 +70,17 @@ function MyTabs() {
 					tabBarLabel: 'Home',
 					tabBarIcon: ({ color, size }) => (
 						<MaterialCommunityIcons name="home" size={size} color={color} />
+					),
+					headerShown: false,
+				}}
+			/>
+			<Tab.Screen
+				name="CreateHouse"
+				component={CreateHouseScreen}
+				options={{
+					tabBarLabel: 'Create House',
+					tabBarIcon: ({ color, size }) => (
+						<MaterialCommunityIcons name="plus-circle" size={size} color={color} />
 					),
 					headerShown: false,
 				}}
