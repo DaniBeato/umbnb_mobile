@@ -5,11 +5,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
+
 //import screens
 import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import UserScreen from '../screens/UserScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import HouseScreen from '../screens/HouseScreen';
 
 const LoginStackNavigator = createNativeStackNavigator();
 
@@ -35,6 +37,13 @@ function LoginNavigator() {
 			<LoginStackNavigator.Screen
 				name="Home"
 				component={MyTabs}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<LoginStackNavigator.Screen
+				name="House"
+				component={HouseScreen}
 				options={{
 					headerShown: false,
 				}}
@@ -66,7 +75,7 @@ function MyTabs() {
 			/>
 			<Tab.Screen
 				name="Profile"
-				component={ProfileScreen}
+				component={UserScreen}
 				options={{
 					tabBarLabel: 'Profile',
 					tabBarIcon: ({ color, size }) => (

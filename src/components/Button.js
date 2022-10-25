@@ -6,8 +6,9 @@ const ButtonContainer = styled.TouchableOpacity`
   background-color: ${props => props.bgColor || '#ff565b'};
 	border: ${props => props.border || 'none'};
   marginTop: ${props => props.marginTop || '60px'};
+  margin: ${props => props.margin || '40px'};
   padding: 10px;
-  width: ${props => props.width};
+  width: ${props => props.width || '30%'};
   border-radius: 5px;
 `
 
@@ -18,12 +19,13 @@ const ButtonText = styled.Text`
   text-align: center;
 `
 
-const Button = ({onPress, bgColor, border, marginTop, width, title, color}) => (
+const Button = ({onPress, bgColor, border, marginTop, margin, width, title, color}) => (
   <ButtonContainer
     onPress={onPress}
 		bgColor={bgColor}
 		border={border}
 		marginTop={marginTop}
+    margin={margin}
     width={width}>
 			<ButtonText
 			color={color}>{title}</ButtonText>

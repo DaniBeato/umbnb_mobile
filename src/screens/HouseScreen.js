@@ -1,16 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Constants from 'expo-constants';
+import { View  } from 'react-native';
+import House from '../components/House.js';
+
 
 const HouseScreen = () => {
   return (
-    <View>
-      <Text
-        style={{
-          fontSize: 30,
-          textAlign: "center",
-          marginTop: 50
-        }}
-      >House Screen</Text>
+    <View
+      style={{
+        marginTop: Constants.statusBarHeight, flexGrow:1
+      }}>
+      <House />
     </View>
   );
   }

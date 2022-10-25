@@ -1,17 +1,17 @@
 import React from 'react';
 import Constants from 'expo-constants';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import Rent from '../components/Rent.js';
+import User from '../components/User.js';
 
-const RentScreen = () => {
+const UserScreen = () => {
   return (
     <View
       style={{
         marginTop: Constants.statusBarHeight, flexGrow:1
       }}>
-      <Rent />
+      <User />
     </View>
   );
   }
 
-export default RentScreen;
+export default UserScreen;
