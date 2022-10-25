@@ -13,6 +13,7 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import HouseScreen from '../screens/HouseScreen';
 import CreateHouseScreen from '../screens/CreateHouseScreen';
+import RentalListScreen from '../screens/RentalListScreen';
 
 const LoginStackNavigator = createNativeStackNavigator();
 
@@ -46,7 +47,14 @@ function LoginNavigator() {
 				name="House"
 				component={HouseScreen}
 				options={{
-					headerShown: false,
+					headerShown: true,
+				}}
+			/>
+			<LoginStackNavigator.Screen
+				name="Rental"
+				component={RentalListScreen}
+				options={{
+					headerShown: true,
 				}}
 			/>
 		</LoginStackNavigator.Navigator>

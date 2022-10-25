@@ -1,5 +1,5 @@
 import React from 'react'
-import {FlatList , Text, View,StyleSheet, Alert} from 'react-native'
+import {FlatList , Text, View, StyleSheet, Alert} from 'react-native'
 import users from '../data/user.js'
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards';
 import { useNavigation } from '@react-navigation/native';
@@ -14,18 +14,19 @@ const User = () => {
             <FlatList data={users} 
             ItemSeparatorComponent={() => <Text> </Text>}
             renderItem={({item: user}) => (
-                <Card>
+                <Card style={styles.container}>
                     <CardImage source={{uri: user.image}} />
                     <CardTitle title={user.name} subtitle={user.lastname} />
-                    <CardContent text="Age:  " text2={user.age} />
-                    <CardContent text="Email:  " text2={user.email} />
-                    <CardContent text="Phone Number:  " text2={user.phoneNumber} />
-                    <CardContent text="Sex:  " text2={user.sex} />
-                    <CardContent text="Province:  " text2={user.province} />
-                    <CardContent text="Is Host?:  " text2={user.host} />
-                    <CardContent text="Password:  " text2={user.password} />
-                    <CardAction  separator={false} inColumn={false}>
-                        <CardButton style={styles.CardButtonInRow} onPress={() => {Alert.alert('','Account deleted sucessfully!'); navigation.navigate('HomeScreen')}} title="Delete Account"color="white" /> 
+                    <CardContent text={"Age:  " + user.age} />
+                    <CardContent text={"Email:  " + user.email} />
+                    <CardContent text={"Phone Number:  " + user.phoneNumber} />
+                    <CardContent text={"Sex:  " + user.sex} />
+                    <CardContent text={"Province: " + user.province} />
+                    <CardContent text={"Is Host?:  " + user.host} />
+                    <CardContent text={"Password:  " + user.password} />
+                    <CardAction  separator={false} inColumn={true}>
+                        <CardButton style={styles.CardButtonInRow} onPress={() => {navigation.navigate('Rental')}} title="Rental List"color="white" /> 
+                        <CardButton style={styles.WhiteBotton} onPress={() => {Alert.alert('Log Out','Log Out sucessfully!'); navigation.navigate('HomeScreen')}} title="Log Out"color="black" /> 
                     </CardAction>
                 </Card>
             )}
@@ -39,13 +40,28 @@ const User = () => {
         container: {
             flex:1,
             backgroundColor: '#fff',
+            margin: 0
+        },
+        WhiteBotton:{
+            width: 300,
+            height: 45,
+            marginLeft: 60,
+            marginTop: 25,
+            marginBottom: 2,
+            paddingLeft: 8,
+            paddingRight: 8,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 4,
+            backgroundColor:'#fff',
+            borderWidth: 1,
         },
         CardButtonInRow: {
             width: 300,
             height: 45,
             marginLeft: 60,
-            marginTop: 60,
-            marginBottom: 8,
+            marginTop: 25,
+            marginBottom: 2,
             paddingLeft: 8,
             paddingRight: 8,
             justifyContent: 'center',

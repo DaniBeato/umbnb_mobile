@@ -12,19 +12,19 @@ const House = () => {
             <FlatList data={houses} 
             ItemSeparatorComponent={() => <Text> </Text>}
             renderItem={({item: house}) => (
-                <Card>
+                <Card style={styles.container}>
                     <CardImage source={{uri: house.image}} />
                     <CardTitle title={house.name} />
-                    <CardContent text="Province:  " text2={house.province} />
-                    <CardContent text="City:  " text2={house.city} />
-                    <CardContent text="Price:  " text2={house.price} />
-                    <CardContent text="Owner Information:  " text2={house.owner} />
-                    <CardContent text="Rooms Number:  " text2={house.roomsNumber} />
-                    <CardContent text="Persons Number:  " text2={house.personsNumber} />
-                    <CardContent text="Review:  " text2={house.review} />
-                    <CardContent text="House Type:  " text2={house.type} />
+                    <CardContent text={"Province:  " + house.province} />
+                    <CardContent text={"City:  " + house.city} />
+                    <CardContent text={"Price:  " + house.price} />
+                    <CardContent text={"Owner Information:  " + house.owner} />
+                    <CardContent text={"Rooms Number:  " + house.roomsNumber} />
+                    <CardContent text={"Persons Number:  " + house.personsNumber} />
+                    <CardContent text={"Review:  " + house.review} />
+                    <CardContent text={"House Type:  " + house.type} />
                     <CardAction style={styles.separatorAddendum} separator={false} inColumn={false}>
-                        <CardButton style={styles.CardButtonInRow} onPress={() => {Alert.alert('','House reserved sucessfully!'); navigation.navigate('HomeScreen')}} title="Reserve"color="white" /> 
+                        <CardButton style={styles.CardButtonInRow} onPress={() => {Alert.alert('House','House reserved sucessfully!'); navigation.navigate('HomeScreen')}} title="Reserve"color="white" /> 
                     </CardAction>
                 </Card>
             )}
@@ -37,6 +37,7 @@ const House = () => {
         container: {
             flex:1,
             backgroundColor: '#fff',
+            margin: 0
         },
         CardButtonInRow: {
             width: 300,

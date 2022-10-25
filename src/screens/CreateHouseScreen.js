@@ -111,7 +111,7 @@ const CreateHouseScreen = () => {
             title="Select house image"
             />
         <Button
-            onPress={() => {Alert.alert('','House created sucessfully!');navigation.navigate('HomeScreen')}}
+            onPress={() => {Alert.alert('Create House','House created sucessfully!');navigation.navigate('HomeScreen')}}
             width='80%'
             title="Create House"
             margin='0px'
