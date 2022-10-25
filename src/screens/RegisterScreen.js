@@ -30,10 +30,8 @@ const RegisterScreen = () => {
   //SelectList Gender
   const [selected, setSelected] = useState("");
   const data = [
-    {key: 1, value: 'Male'},
-    {key: 2, value: 'Female'},
-    {key: 3, value: 'Other'},
-    {key: 4, value: 'Prefer not to say'},
+    {key: 0, value: 'Male'},
+    {key: 1, value: 'Female'},
   ];
   //SelectList Province
   const [selectedProvince, setSelectedProvince] = useState("");

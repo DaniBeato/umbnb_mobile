@@ -1,17 +1,17 @@
 import React from 'react';
 import Constants from 'expo-constants';
-import { View } from 'react-native';
-import HouseList from '../components/HouseList';
+import {View} from 'react-native';
+import User from '../components/User.js';
 
-const HomeScreen = () => {
+const UserScreen = () => {
   return (
     <View
       style={{
         marginTop: Constants.statusBarHeight, flexGrow:1
       }}>
-      <HouseList />
+      <User />
     </View>
   );
   }
 
-export default HomeScreen;
+export default UserScreen;

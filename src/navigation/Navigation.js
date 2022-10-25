@@ -5,11 +5,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
+
 //import screens
 import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import UserScreen from '../screens/UserScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import HouseScreen from '../screens/HouseScreen';
+import CreateHouseScreen from '../screens/CreateHouseScreen';
+import RentalListScreen from '../screens/RentalListScreen';
 
 const LoginStackNavigator = createNativeStackNavigator();
 
@@ -39,6 +43,20 @@ function LoginNavigator() {
 					headerShown: false,
 				}}
 			/>
+			<LoginStackNavigator.Screen
+				name="House"
+				component={HouseScreen}
+				options={{
+					headerShown: true,
+				}}
+			/>
+			<LoginStackNavigator.Screen
+				name="Rental"
+				component={RentalListScreen}
+				options={{
+					headerShown: true,
+				}}
+			/>
 		</LoginStackNavigator.Navigator>
 	);
 }
@@ -65,8 +83,19 @@ function MyTabs() {
 				}}
 			/>
 			<Tab.Screen
+				name="CreateHouse"
+				component={CreateHouseScreen}
+				options={{
+					tabBarLabel: 'Create House',
+					tabBarIcon: ({ color, size }) => (
+						<MaterialCommunityIcons name="plus-circle" size={size} color={color} />
+					),
+					headerShown: false,
+				}}
+			/>
+			<Tab.Screen
 				name="Profile"
-				component={ProfileScreen}
+				component={UserScreen}
 				options={{
 					tabBarLabel: 'Profile',
 					tabBarIcon: ({ color, size }) => (
