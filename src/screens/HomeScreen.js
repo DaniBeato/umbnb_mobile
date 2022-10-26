@@ -1,7 +1,8 @@
 import React from 'react';
 import Constants from 'expo-constants';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import HousesList from '../components/HousesList';
+import { View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import HouseList from '../components/HouseList';
 
 const HomeScreen = () => {
   return (
@@ -9,7 +10,8 @@ const HomeScreen = () => {
       style={{
         marginTop: Constants.statusBarHeight, flexGrow:1
       }}>
-      <HousesList />
+      <StatusBar style="auto" backgroundColor='white' />
+      <HouseList />
     </View>
   );
   }

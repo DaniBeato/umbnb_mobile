@@ -1,55 +1,94 @@
-import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import saveData from '../helpers/saveData';
+import user from '../api/login';
 import Text from '../components/Text';
 import Logo from '../components/Logo';
 import Input from '../components/TextInput';
 import Button from '../components/Button';
+import Columns from '../components/Columns';
 
 
 const LoginScreen = () => {
 
+  const navigation = useNavigation();
+  const [email, setEmail]  = useState('');
+  const [password, setPassword] = useState('');
+  const [res, setRes] = useState('');
+
+  const handleLogin = async() => {
+    try {
+      const usr = {
+        email: email,
+        password: password,
+      };
+      await user.post(usr)
+        .then((response) => {
+          setRes(response.data);
+        })
+        .catch((error) => {throw error});
+      if (res && res.data && res.data.access_token) {
+        console.log(res.data.access_token);
+        saveData(res.data.access_token);
+        navigation.replace('Home');
+      }
+      else {
+        Alert.alert('Login', 'Invalid email or password');
+        throw new Error('Invalid email or password');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.title}>Hello</Text> */}
       <Logo />
       <Text
-        title = 'Log in to start planning your next'
+        title = 'Log in to start planning your next trip.'
         color = 'gray'
         fontSize = '18px'
         marginTop='0px'
       />
-      <Input placeholder="Juan@mail.com" />
-      <Input placeholder="********" secureTextEntry={true}/>
+      <Input placeholder="Email"
+        value= {email}
+        onChangeText= {text => setEmail(text)}/>
+      <Input placeholder="********"
+        secureTextEntry={true}
+        value={password}
+        onChangeText={text => setPassword(text)}/>
       <Text
         title='Forgot your Password?'
         color='gray'
       />
       <Button
-        onPress={() => alert('Login')}
         width='80%'
         title="Log in"
+        onPress={
+          handleLogin
+        }
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          width: '100%',
-          marginTop: 20
-        }}>
-        <Text
+      <Columns
+        width = '100%'
+        columnLeft={
+          <Text
           title='Don´t have an account?'
           color='gray'
-        />
-        <Button
-          onPress={() => alert('Register')}
-          bgColor='white'
-          border='1px'
-          marginTop='10px'
-          width='30%'
-          color='#000'
-          title="Sign Up"
-        />
-      </View>
+          />
+        }
+        columnRight={
+          <Button
+            onPress={() => navigation.navigate('Register')}
+            bgColor='white'
+            border='1px'
+            marginTop='10px'
+            width='30%'
+            color='#000'
+            title="Sign Up"
+          />
+        }
+      />
     </View>
   );
 }
