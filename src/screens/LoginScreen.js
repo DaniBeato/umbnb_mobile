@@ -17,18 +17,19 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [res, setRes] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async() => {
     try {
       const usr = {
         email: email,
         password: password,
       };
-      user.post(usr)
+      await user.post(usr)
         .then((response) => {
           setRes(response.data);
         })
         .catch((error) => {throw error});
       if (res && res.data && res.data.access_token) {
+        console.log(res.data.access_token);
         saveData(res.data.access_token);
         navigation.replace('Home');
       }
